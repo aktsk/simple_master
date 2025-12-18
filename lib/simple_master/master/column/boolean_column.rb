@@ -34,7 +34,7 @@ module SimpleMaster
 
         def code_for_sql_value
           <<-RUBY
-            # true, falseに対応しない場合があるので、0, 1に変換する
+            # Convert to 0/1 for systems that do not support true/false
             case #{name}
             when true
               1

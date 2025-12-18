@@ -45,7 +45,7 @@ module SimpleMaster
       #: () -> bool
       def valid?
         _run_validate_callbacks
-        # 大量なerrorsインスタンスを作ることを避けるため errors.empty? ではなく、直接参照する
+        # Refer directly instead of errors.empty? to avoid creating many errors objects
         !Thread.current[:errors]&.[](self).present?
       end
 

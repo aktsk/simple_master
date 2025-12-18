@@ -64,11 +64,11 @@ module SimpleMaster
 
           tables = targets.map(&:base_class).uniq.map { table(_1) }
 
-          timer("MasterDataロード") do
+          timer("MasterData load") do
             tables.each(&:load_records)
           end
 
-          timer("MasterDataキャッシュアップデート") do
+          timer("MasterData cache update") do
             SimpleMaster.use_dataset(self) do
               tables.each(&:update_class_method_cache)
               tables.each(&:tap_instance_methods)
@@ -76,7 +76,7 @@ module SimpleMaster
             end
           end
 
-          timer("キャッシュアップデート") do
+          timer("Cache update") do
             SimpleMaster.use_dataset(self) do
               self.class.run_after_load
             end

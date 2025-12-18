@@ -24,7 +24,7 @@ module SimpleMaster
               end
             else
               def #{name}
-                # nilの場合キャッシュヒットしないので、Arrayでキャッシュに入れる
+                # Store in an Array so nil values still hit the cache
                 values = (has_many_store[:#{name}] ||= [#{target_class}.simple_master_connection.find_by_#{foreign_key}(#{primary_key})])
                 values.first
               end
@@ -40,7 +40,7 @@ module SimpleMaster
               end
             else
               def #{name}
-                # nilの場合キャッシュヒットしないので、Arrayでキャッシュに入れる
+                # Store in an Array so nil values still hit the cache
                 values = (has_many_store[:#{name}] ||= [#{target_class}.simple_master_connection.find_by_#{foreign_key}(#{primary_key})])
                 values.first
               end

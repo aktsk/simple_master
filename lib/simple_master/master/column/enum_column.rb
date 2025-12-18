@@ -63,7 +63,7 @@ module SimpleMaster
           RUBY
 
           enum.each_key do |enum_name|
-            # 数字で開始する文字列の場合は作らない
+            # Skip generating helpers for names that start with a digit
             unless enum_name.match?(/\A\d/)
               master_class.simple_master_module.class_eval <<-RUBY, __FILE__, __LINE__ + 1
                 def #{prefix}#{enum_name}#{suffix}?

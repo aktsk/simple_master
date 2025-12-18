@@ -27,7 +27,7 @@ module SimpleMaster
 
         def init(master_class)
           unless master_class.method_defined?(foreign_type_class)
-            fail "[#{master_class}] polymorphic typeカラム <#{name}> に `polymorphic_type: true` の option を指定してください。"
+            fail "[#{master_class}] Please specify `polymorphic_type: true` on polymorphic type column <#{name}>."
           end
 
           master_class.simple_master_module.class_eval <<-RUBY, __FILE__, __LINE__ + 1
@@ -62,7 +62,7 @@ module SimpleMaster
             end
 
             def _#{name}_target_save?
-              # associationの代入後に別の値が代入された場合はassociationはsaveしない
+              # Skip saving the association if the key changed after assignment
               return false if @_association_#{name}_source != #{foreign_key}
               return false if @_association_#{name}_class_source != #{foreign_type_class}
 

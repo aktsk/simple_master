@@ -16,7 +16,7 @@ module SimpleMaster
           <<-RUBY
             unless @#{name} == value
               dirty!
-              # IDの場合、@id_hashの修正が必要
+              # IDs require updating @id_hash when changed
               self.class.id_hash.delete(@#{name}) if @#{name}
             end
           RUBY

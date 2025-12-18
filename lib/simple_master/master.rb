@@ -30,7 +30,7 @@ module SimpleMaster
         table_available?
       end
 
-      # 自動作成のメソッドを module に入れることで、overrideできるようにしています。
+      # Auto-generated methods live in a module so they can be overridden.
       def simple_master_module
         @simple_master_module ||= Module.new
       end
@@ -78,7 +78,7 @@ module SimpleMaster
         all_columns.map(&:name)
       end
 
-      # ARの仕様と違い、カラムの存在を確認できるようにしただけ。
+      # Unlike ActiveRecord, we ensure column existence can be checked.
       #: () -> Hash[String, SimpleMaster::Master::Column]
       def columns_hash
         all_columns.index_by(&:name).with_indifferent_access
@@ -305,7 +305,7 @@ module SimpleMaster
         default_object = allocate
 
         all_columns.each do |column|
-          # 高速化のため、定義されていない場合でも nil を代入する
+          # Assign nil even when undefined to keep this fast
           default_object.send :"#{column.name}=", column.options[:default].freeze
           default_object.send :"_globalized_#{column.name}=", nil if column.options[:globalize]
         end

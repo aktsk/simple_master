@@ -2,7 +2,7 @@
 
 module SimpleMaster
   class Master
-    # 検索用のメソッド定義
+    # Lookup helper methods
     module Filterable
       def find(id)
         id_hash.fetch(id)
@@ -33,7 +33,7 @@ module SimpleMaster
       end
 
       def all_in(key, values)
-        # NOTE: Array#flatten が重いので、使わないようにしています
+        # NOTE: Avoid Array#flatten because it is slow here
         grouped_hash.fetch(key).fetch_values(*values) { EMPTY_ARRAY }.flat_map(&:itself).freeze
       end
 

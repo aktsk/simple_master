@@ -2,7 +2,7 @@
 
 module SimpleMaster
   class Master
-    # テストデータのために、save!などを提供する
+    # Provide save! helpers for test data
     module Editable
       extend ActiveSupport::Concern
 
@@ -28,7 +28,7 @@ module SimpleMaster
       end
 
       def record_to_save
-        # type_not_match?が前提
+        # Assumes type_not_match? has already been checked
         return nil if type.nil?
         return @record_to_save if @record_to_save && @record_to_save.type == type
 
@@ -39,7 +39,7 @@ module SimpleMaster
         self.class.sti_class? && type != self.class.to_s
       end
 
-      # IDは全てのクラスで重複しないgeneratorを使用する
+      # Use a generator that avoids ID collisions across classes
       @@generated_id = 0 # rubocop:disable Style/ClassVars
       def generate_id
         loop do
@@ -77,9 +77,9 @@ module SimpleMaster
         end
 
         if @dirty
-          # 自身のテーブルを更新
+          # Update this table
           if type_not_match?
-            # 親クラスでデータを作成してしまう場合、作られたインスタンスを捨て、別途データを保存する
+            # If data would be created on the parent class, discard that instance and save separately
             record_to_save&.update!(attributes)
           else
             if new_record?
@@ -144,7 +144,7 @@ module SimpleMaster
       end
 
       def destroy!
-        fail "Destroyしてはいけない"
+        fail "Destroy is not allowed"
       end
 
       # NOTE: no freezing

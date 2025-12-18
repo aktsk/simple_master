@@ -33,7 +33,7 @@ module SimpleMaster
   end
 
   def self.database_available?
-    # DBが存在しない場合、エラーになる
+    # Raises an error if the DB is missing
     ::ActiveRecord::Base.connection.verify!
 
     true

@@ -17,7 +17,7 @@ module SimpleMaster
 
         def code_for_sql_value
           <<-RUBY
-            # to_json は不要な escape をしちゃうので、JSON.generateを利用
+            # Use JSON.generate because to_json adds unnecessary escaping
             #{name}&.then { JSON.generate(_1) }
           RUBY
         end

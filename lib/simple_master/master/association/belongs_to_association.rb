@@ -53,7 +53,7 @@ module SimpleMaster
             end
 
             def _#{name}_target_save?
-              # associationの代入後に別の値が代入された場合はassociationはsaveしない
+              # Skip saving the association if the key changed after assignment
               return false if @_association_#{name}_source != #{foreign_key}
 
               target = belongs_to_store[:#{name}]

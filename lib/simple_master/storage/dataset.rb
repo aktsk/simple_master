@@ -30,6 +30,7 @@ module SimpleMaster
       attr_reader :diff
       attr_accessor :tables
       attr_accessor :cache
+      attr_accessor :load_targets
 
       def initialize(table_class: DEFAULT_TABLE, loader: nil)
         @table_class = table_class
@@ -59,7 +60,7 @@ module SimpleMaster
       def load
         memsize do
           cache.clear
-          targets = SimpleMaster.targets
+          targets = @load_targets || SimpleMaster.targets
 
           tables = targets.map(&:base_class).uniq.map { table(_1) }
 

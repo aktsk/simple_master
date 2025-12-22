@@ -57,7 +57,7 @@ module SimpleMaster
             value
           end
 
-          # CSVの差分確認時など、生データ(DBの値 or CSVの値)をツールで見る時用
+          # For inspecting raw DB/CSV values when checking CSV diffs
           def #{name}_value_for_csv
             #{code_for_sql_value}
           end

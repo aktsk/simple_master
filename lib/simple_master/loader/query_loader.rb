@@ -24,11 +24,11 @@ module SimpleMaster
         columns.each do |column_name|
           unless klass.method_defined?(:"#{column_name}=")
             if ENV["RAILS_ENV"] == "development"
-              # ローカル等環境の場合、何も起きないメソッドを用意し、エラーが起きないようにする
+              # In local/dev, define a no-op setter so loading does not raise
               klass.define_method(:"#{column_name}=", &:itself)
-              warn "#{klass}.#{column_name}カラムが定義されていません！"
+              warn "#{klass}.#{column_name} column is not defined!"
             else
-              fail "#{klass}.#{column_name}カラムが定義されていません！"
+              fail "#{klass}.#{column_name} column is not defined!"
             end
           end
         end
@@ -41,7 +41,7 @@ module SimpleMaster
                 if child_klass == klass || child_klass.sti_base_class == klass
                   child_klass.new
                 else
-                  warn "[#{klass}] typeカラムに不正な値が入っています #{row}"
+                  warn "[#{klass}] Invalid value in the type column: #{row}"
                   next
                 end
               else

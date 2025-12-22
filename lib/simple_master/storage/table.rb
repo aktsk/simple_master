@@ -26,7 +26,7 @@ module SimpleMaster
           table.applied_diff = applied_diff
           table.digest = digest
 
-          # ロードされている場合、既存id_hash, grouped_hashをコピー
+          # If already loaded, copy existing id_hash and grouped_hash
           table.id_hash = id_hash if @id_hash
           table.grouped_hash = grouped_hash if @grouped_hash
           table.sub_tables = sub_tables&.transform_values { |sub_table|
@@ -76,7 +76,7 @@ module SimpleMaster
 
       def update_class_method_cache
         self.class_method_cache = class_method_cache = {}.compare_by_identity
-        # blockだと宣言したクラスのコンテキストになるため、instance_eval を利用する
+        # Use instance_eval so a block runs in the declaring class context
         klass.all_class_method_cache_info.each do |args, initializer|
           result = klass.instance_eval(&initializer)
           if args.length == 1
@@ -163,15 +163,15 @@ module SimpleMaster
 
           record_diff.each do |k, v|
             next if metadata_key?(k)
-            # jsonカラムでjsonが展開状態のケースも考慮（キーがstringとなってしまうため、jsonに戻してから代入）
+            # Handle expanded JSON columns by converting keys back to JSON strings before assignment
             if v.is_a?(Hash) || v.is_a?(Array)
               v = v.to_json
             end
             record.send(:"#{k}=", v)
           rescue NoMethodError => _e
-            raise ColumnNotExist, "カラム #{k} が #{klass} に存在しません."
+            raise ColumnNotExist, "Column #{k} does not exist on #{klass}."
           rescue => e
-            raise AssignmentError, "データの代入に失敗: #{klass}.#{k} = #{v.inspect}. Message: #{e.message}."
+            raise AssignmentError, "Failed to assign data: #{klass}.#{k} = #{v.inspect}. Message: #{e.message}."
           end
 
           id_hash[id] = record

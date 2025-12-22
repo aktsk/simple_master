@@ -75,7 +75,7 @@ module SimpleMaster
               before_save do
                 if master_dirty[:#{name}]
                   master = master_dirty.delete(:#{name})
-                  # associationの代入後に別の値が代入された場合はassociationはsaveしない
+                  # Skip saving the association if the key was changed after assignment
                   if @_association_#{name}_source != #{foreign_key}
                     next
                   end

@@ -64,13 +64,12 @@ module SimpleMaster
 
           enum.each_key do |enum_name|
             # Skip generating helpers for names that start with a digit
-            unless enum_name.match?(/\A\d/)
-              master_class.simple_master_module.class_eval <<-RUBY, __FILE__, __LINE__ + 1
+            next if enum_name.match?(/\A\d/)
+            master_class.simple_master_module.class_eval <<-RUBY, __FILE__, __LINE__ + 1
                 def #{prefix}#{enum_name}#{suffix}?
                   #{name} == :#{enum_name}
                 end
-              RUBY
-            end
+            RUBY
           end
         end
 

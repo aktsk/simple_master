@@ -35,8 +35,8 @@ module SimpleMaster
           values_sql =
             sliced_records.map { |record|
               sql_column_methods
-              .zip(column_names)
-              .map { |method_name, column_name|
+                .zip(column_names)
+                .map { |method_name, column_name|
                 if [:updated_at, :created_at].include?(column_name)
                   current_time
                 else

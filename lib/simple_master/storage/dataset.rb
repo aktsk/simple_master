@@ -90,7 +90,7 @@ module SimpleMaster
         tables.clear
       end
 
-      # Note: Pass a empty hash to duplicate with empty diff.
+      # NOTE: Pass a empty hash to duplicate with empty diff.
       def duplicate(diff: nil)
         diff ||= @diff
         new_dataset = self.class.new(table_class: table_class, loader: loader)

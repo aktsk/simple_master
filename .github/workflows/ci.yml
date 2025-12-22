@@ -15,3 +15,41 @@ jobs:
           bundler-cache: true
       - name: Run RuboCop
         run: bundle exec rubocop
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BUNDLE_PATH: vendor/bundle
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+          - "3.2"
+          - "3.3"
+          - "3.4"
+        appraisal:
+          - rails-7_0
+          - rails-7_1
+          - rails-7_2
+          - rails-8_0
+          - rails-8_1
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+
+      - name: Install system deps
+        run: sudo apt-get update && sudo apt-get install -y libsqlite3-dev pkg-config
+
+      - name: Install Appraisal gemfiles
+        run: bundle exec appraisal install
+
+      - name: Run specs (${{ matrix.appraisal }})
+        run: bundle exec appraisal ${{ matrix.appraisal }} rspec spec
+
+      - name: Run rails sample specs (${{ matrix.appraisal }})
+        run: bundle exec appraisal ${{ matrix.appraisal }} rake rails_sample_spec

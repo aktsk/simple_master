@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "lv": 1,
+    "attack": 5.0,
+    "defence": 2.0,
+    "hp": 18.0,
+    "next_exp": 12,
+    "hp_recovery_sec": 55,
+    "stamina": 12,
+    "stamina_recovery_sec": 28
+  },
+  {
+    "id": 2,
+    "lv": 2,
+    "attack": 6.5,
+    "defence": 3.0,
+    "hp": 24.0,
+    "next_exp": 24,
+    "hp_recovery_sec": 50,
+    "stamina": 14,
+    "stamina_recovery_sec": 24
+  },
+  {
+    "id": 3,
+    "lv": 3,
+    "attack": 8.5,
+    "defence": 4.5,
+    "hp": 32.0,
+    "next_exp": 40,
+    "hp_recovery_sec": 45,
+    "stamina": 16,
+    "stamina_recovery_sec": 22
+  },
+  {
+    "id": 4,
+    "lv": 4,
+    "attack": 11.0,
+    "defence": 6.0,
+    "hp": 40.0,
+    "next_exp": 60,
+    "hp_recovery_sec": 40,
+    "stamina": 18,
+    "stamina_recovery_sec": 20
+  },
+  {
+    "id": 5,
+    "lv": 5,
+    "attack": 13.5,
+    "defence": 7.5,
+    "hp": 48.0,
+    "next_exp": 85,
+    "hp_recovery_sec": 36,
+    "stamina": 21,
+    "stamina_recovery_sec": 18
+  },
+  {
+    "id": 6,
+    "lv": 6,
+    "attack": 16.0,
+    "defence": 9.0,
+    "hp": 58.0,
+    "next_exp": 120,
+    "hp_recovery_sec": 32,
+    "stamina": 24,
+    "stamina_recovery_sec": 16
+  },
+  {
+    "id": 7,
+    "lv": 7,
+    "attack": 18.5,
+    "defence": 10.5,
+    "hp": 68.0,
+    "next_exp": 160,
+    "hp_recovery_sec": 28,
+    "stamina": 27,
+    "stamina_recovery_sec": 14
+  },
+  {
+    "id": 8,
+    "lv": 8,
+    "attack": 21.0,
+    "defence": 12.0,
+    "hp": 79.0,
+    "next_exp": 210,
+    "hp_recovery_sec": 24,
+    "stamina": 30,
+    "stamina_recovery_sec": 12
+  },
+  {
+    "id": 9,
+    "lv": 9,
+    "attack": 24.0,
+    "defence": 13.5,
+    "hp": 90.0,
+    "next_exp": 270,
+    "hp_recovery_sec": 21,
+    "stamina": 33,
+    "stamina_recovery_sec": 10
+  },
+  {
+    "id": 10,
+    "lv": 10,
+    "attack": 27.0,
+    "defence": 15.5,
+    "hp": 104.0,
+    "next_exp": 0,
+    "hp_recovery_sec": 18,
+    "stamina": 36,
+    "stamina_recovery_sec": 9
+  }
+]

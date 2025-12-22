@@ -1,0 +1,17 @@
+weapons:
+  1:
+    name:
+      en: "Bronze Pistol"
+      ja: "ブロンズピストル"
+  2:
+    name:
+      en: "Silver Saber"
+      ja: "シルバーセイバー"
+  3:
+    name:
+      en: "Crimson Rifle"
+      ja: "クリムゾンライフル"
+  4:
+    name:
+      en: "Storm Edge"
+      ja: "ストームエッジ"

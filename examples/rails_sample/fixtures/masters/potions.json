@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Minor Heal",
+    "_globalized_name": "{\"en\":\"Minor Heal\",\"ja\":\"マイナーヒール\"}",
+    "hp": 25.0
+  },
+  {
+    "id": 2,
+    "name": "Major Heal",
+    "_globalized_name": "{\"en\":\"Major Heal\",\"ja\":\"メジャーヒール\"}",
+    "hp": 60.0
+  },
+  {
+    "id": 3,
+    "name": "Elixir",
+    "_globalized_name": "{\"en\":\"Elixir\",\"ja\":\"エリクサー\"}",
+    "hp": 120.0
+  }
+]

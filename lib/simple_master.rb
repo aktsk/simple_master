@@ -2,6 +2,7 @@
 
 require "active_support/dependencies"
 require "active_record"
+require "request_store"
 require "logger"
 require "simple_master/version"
 

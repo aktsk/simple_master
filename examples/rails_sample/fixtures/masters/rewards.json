@@ -1,0 +1,16 @@
+[
+  { "id": 1, "enemy_id": 1, "reward_type": "Weapon", "reward_id": 1 },
+  { "id": 2, "enemy_id": 1, "reward_type": "Potion", "reward_id": 1 },
+  { "id": 3, "enemy_id": 2, "reward_type": "Potion", "reward_id": 2 },
+  { "id": 4, "enemy_id": 2, "reward_type": "Weapon", "reward_id": 3 },
+  { "id": 5, "enemy_id": 3, "reward_type": "Potion", "reward_id": 1 },
+  { "id": 6, "enemy_id": 4, "reward_type": "Weapon", "reward_id": 2 },
+  { "id": 7, "enemy_id": 4, "reward_type": "Armor", "reward_id": 2 },
+  { "id": 8, "enemy_id": 5, "reward_type": "Armor", "reward_id": 3 },
+  { "id": 9, "enemy_id": 6, "reward_type": "Potion", "reward_id": 3 },
+  { "id": 10, "enemy_id": 7, "reward_type": "Armor", "reward_id": 1 },
+  { "id": 11, "enemy_id": 8, "reward_type": "Potion", "reward_id": 2 },
+  { "id": 12, "enemy_id": 9, "reward_type": "Weapon", "reward_id": 3 },
+  { "id": 13, "enemy_id": 10, "reward_type": "Weapon", "reward_id": 3 },
+  { "id": 14, "enemy_id": 10, "reward_type": "Potion", "reward_id": 3 }
+]

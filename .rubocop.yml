@@ -1,8 +1,14 @@
 AllCops:
   DisplayCopNames: true
   NewCops: enable
+  SuggestExtensions: false
 
 plugins:
+  - rubocop-rspec
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec_rails
+  - rubocop-factory_bot
 
 ### Lint ###
 Lint/AmbiguousOperatorPrecedence:
@@ -142,4 +148,62 @@ Metrics/ModuleLength:
   Enabled: false
 
 Metrics/PerceivedComplexity:
+  Enabled: false
+
+### Rails ###
+Rails:
+  Enabled: true
+
+Rails/Blank:
+  Enabled: false
+
+Rails/Delegate:
+  Enabled: false
+
+Rails/Output:
+  Enabled: false
+
+Rails/SquishedSQLHeredocs:
+  Enabled: false
+
+Rails/RedundantActiveRecordAllMethod:
+  Enabled: false
+
+Rails/DynamicFindBy:
+  AllowedMethods:
+    - find_by_id
+    - find_by_id!
+    - find_by_ids
+    - find_by_ids!
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/FindEach:
+  Enabled: false
+
+### Performance ###
+Performance/CollectionLiteralInLoop:
+  Enabled: false
+
+### RSpec ###
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/LetSetup:
   Enabled: false

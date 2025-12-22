@@ -28,7 +28,7 @@ module SimpleMaster
             unless options[:polymorphic]
               class_name = options[:class_name] || ActiveSupport::Inflector.classify(name)
 
-              klass = compute_type("#{class_name}")
+              klass = compute_type(class_name.to_s)
               if klass < SimpleMaster::Master
                 return belongs_to_master(name, options)
               else
@@ -91,7 +91,7 @@ module SimpleMaster
 
             class_name = options[:class_name] || ActiveSupport::Inflector.classify(name)
 
-            klass = compute_type("#{class_name}")
+            klass = compute_type(class_name.to_s)
             if klass < SimpleMaster::Master
               has_one_master(name, options)
             else
@@ -122,7 +122,7 @@ module SimpleMaster
 
             class_name = options[:class_name] || ActiveSupport::Inflector.classify(name)
 
-            klass = compute_type("#{class_name}")
+            klass = compute_type(class_name.to_s)
             if klass < SimpleMaster::Master
               has_many_master(name, options)
             else

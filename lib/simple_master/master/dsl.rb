@@ -11,7 +11,7 @@ module SimpleMaster
         bitmask: Column::BitmaskColumn,
       }.freeze
 
-      def def_column(column_name, options = EMPTY_HASH)
+      def def_column(column_name, options = {})
         column = column_type(column_name, options).new(column_name, options)
         columns << column
 

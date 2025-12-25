@@ -34,7 +34,7 @@ jobs:
           - rails-8_0
           - rails-8_1
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1

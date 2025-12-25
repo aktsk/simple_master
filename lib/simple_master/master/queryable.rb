@@ -37,11 +37,11 @@ module SimpleMaster
               sql_column_methods
                 .zip(column_names)
                 .map { |method_name, column_name|
-                if [:updated_at, :created_at].include?(column_name)
-                  current_time
-                else
-                  record.send(method_name)
-                end
+                  if [:updated_at, :created_at].include?(column_name)
+                    current_time
+                  else
+                    record.send(method_name)
+                  end
               }.join(", ").then { "(#{_1})" }
             }.join(", \n")
 

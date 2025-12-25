@@ -1,5 +1,7 @@
 # SimpleMaster Dataset / Table 仕様 (日本語)
 
+> English version: [simple_master_dataset_en.md](simple_master_dataset_en.md)
+
 ## 全体説明
 SimpleMaster ではデータの実体を `Dataset` が持ち、各 Master クラスごとに `Table` が対応します。
 `Loader` が外部データを読み込み、`Table` がレコードと各種キャッシュを保持します。

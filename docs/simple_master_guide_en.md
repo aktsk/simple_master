@@ -1,5 +1,7 @@
 # SimpleMaster Getting Started Guide
 
+> 日本語版: [simple_master_guide_ja.md](simple_master_guide_ja.md)
+
 ## Purpose
 - Handle master data fast without relying on Rails/ActiveRecord
 - Reference records as Ruby objects and define associations and caches

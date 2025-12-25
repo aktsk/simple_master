@@ -9,5 +9,11 @@ In game development and other domains, configuration/definition datasets are oft
 - **Familiar associations, very fast**: `belongs_to` / `has_many`-style API resolved in memory, fast enough that N+1 is rarely a concern.
 - **COW-friendly for multi-process**: records are frozen, making Copy-on-Write efficient when sharing memory across forked processes.
 
+## Documentation
+- Getting Started Guide: [English](docs/simple_master_guide_en.md) / [日本語](docs/simple_master_guide_ja.md)
+- Columns: [English](docs/simple_master_columns_en.md) / [日本語](docs/simple_master_columns_ja.md)
+- Dataset / Table: [English](docs/simple_master_dataset_en.md) / [日本語](docs/simple_master_dataset_ja.md)
+- Associations: [English](docs/simple_master_associations_en.md) / [日本語](docs/simple_master_associations_ja.md)
+
 ## License
 MIT License. See [LICENSE](LICENSE) for details.

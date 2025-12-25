@@ -1,5 +1,7 @@
 # SimpleMaster カラム仕様 (日本語)
 
+> English version: [simple_master_columns_en.md](simple_master_columns_en.md)
+
 ## 全体説明
 SimpleMaster のカラムは `def_column` で定義し、ロード時に型変換・キャッシュ・補助メソッドを自動生成します。
 `type` や各種 DSL によって、変換ルールや追加メソッドが決まります。

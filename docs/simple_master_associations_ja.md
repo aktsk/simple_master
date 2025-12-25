@@ -1,5 +1,7 @@
 # SimpleMaster Association 仕様 (日本語)
 
+> English version: [simple_master_associations_en.md](simple_master_associations_en.md)
+
 ## 全体説明
 SimpleMaster の Association は `belongs_to` / `has_one` / `has_many` / `has_many :through` を提供します。
 

@@ -1,5 +1,7 @@
 # SimpleMaster 導入ガイド
 
+> English version: [simple_master_guide_en.md](simple_master_guide_en.md)
+
 ## 目的
 - マスターデータを Rails/ActiveRecord とは別に高速に扱う
 - Ruby オブジェクトとして参照でき、関連づけやキャッシュを定義できる

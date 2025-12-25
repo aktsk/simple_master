@@ -1,5 +1,7 @@
 # SimpleMaster Dataset / Table (English)
 
+> 日本語版: [simple_master_dataset_ja.md](simple_master_dataset_ja.md)
+
 ## Overview
 In SimpleMaster, the dataset holds the actual data, and each master class maps to a table.
 The loader reads external data, and the table keeps records and caches.

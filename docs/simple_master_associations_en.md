@@ -1,5 +1,7 @@
 # SimpleMaster Associations (English)
 
+> 日本語版: [simple_master_associations_ja.md](simple_master_associations_ja.md)
+
 ## Overview
 SimpleMaster provides `belongs_to`, `has_one`, `has_many`, and `has_many :through`.
 

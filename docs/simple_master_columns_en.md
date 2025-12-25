@@ -1,5 +1,7 @@
 # SimpleMaster Columns (English)
 
+> 日本語版: [simple_master_columns_ja.md](simple_master_columns_ja.md)
+
 ## Overview
 SimpleMaster columns are defined with `def_column`. At load time, type conversion,
 cache helpers, and accessor methods are generated.

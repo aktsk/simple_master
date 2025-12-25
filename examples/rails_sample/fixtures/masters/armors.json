@@ -1,0 +1,5 @@
+[
+  { "id": 1, "icon": "fa-solid fa-shirt", "name": "Leather Vest", "defence": 5.0 },
+  { "id": 2, "icon": "fa-solid fa-shield-halved", "name": "Chain Mail", "defence": 12.5 },
+  { "id": 3, "icon": "fa-solid fa-shield", "name": "Dragon Plate", "defence": 28.0 }
+]

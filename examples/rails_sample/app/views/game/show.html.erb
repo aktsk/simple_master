@@ -1,0 +1,340 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Rock+Salt&display=swap");
+
+  :root {
+    --bg-a: #f6f0e8;
+    --bg-b: #e8f4ff;
+    --bg-c: #fdf6d8;
+    --ink: #1f2937;
+    --muted: #5b6472;
+    --accent: #d4562a;
+    --card: rgba(255, 255, 255, 0.78);
+    --line: rgba(31, 41, 55, 0.12);
+  }
+
+  body {
+    margin: 0;
+    font-family: "Space Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: linear-gradient(135deg, var(--bg-a), var(--bg-b) 50%, var(--bg-c));
+  }
+
+  .screen {
+    max-width: 960px;
+    margin: 36px auto 80px;
+    padding: 0 20px;
+  }
+
+  .top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-family: "Rock Salt", cursive;
+    font-size: 28px;
+    margin: 0 0 6px;
+  }
+
+  h2 {
+    margin: 0 0 12px;
+    font-size: 18px;
+  }
+
+  .notice {
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+  }
+
+  .grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    margin-bottom: 22px;
+  }
+  .columns {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: minmax(260px, 1fr) minmax(300px, 1.2fr);
+    align-items: start;
+  }
+  .enemy-card {
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    backdrop-filter: blur(6px);
+  }
+
+  .stat {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+  }
+  .bar {
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(31, 41, 55, 0.1);
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .bar > span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #d4562a, #ef9b59);
+  }
+
+  .muted {
+    color: var(--muted);
+  }
+
+  form.inline {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  input, button {
+    font: inherit;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: #fff;
+  }
+
+  button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .item-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(31, 41, 55, 0.08);
+    font-size: 11px;
+    min-width: 24px;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(212, 86, 42, 0.12);
+    color: var(--accent);
+    font-size: 12px;
+    margin-left: 6px;
+  }
+  @media (max-width: 640px) {
+    h1 { font-size: 24px; }
+    .columns { grid-template-columns: 1fr; }
+    .enemy-card { max-height: none; }
+  }
+</style>
+
+<main class="screen">
+  <header class="top">
+    <div>
+      <h1>Dummy Game</h1>
+      <div class="muted">Fight, earn exp, and grab rewards.</div>
+    </div>
+    <form class="inline" action="/play" method="post">
+      <input type="hidden" name="op" value="create_player">
+      <input type="text" name="name" placeholder="Name">
+      <button type="submit">Create Player (Lv 1)</button>
+    </form>
+    <% if flash[:notice] %>
+      <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
+  </header>
+
+  <section class="columns">
+    <div class="card">
+      <h2>Player</h2>
+      <% if @player %>
+        <% equipped_weapon = @player.weapon %>
+        <% equipped_armor = @player.armor %>
+        <% weapon_icon = equipped_weapon&.icon.to_s.strip %>
+        <% armor_icon = equipped_armor&.icon.to_s.strip %>
+        <div class="stat"><span>Name</span><span><%= @player.name %></span></div>
+        <div class="stat"><span>Level</span><span>Lv <%= @player.lv %> (EXP <%= @player.exp %>)</span></div>
+        <div class="stat"><span>ATK / DEF</span><span><%= @player.attack_power %> / <%= @player.defence_power %></span></div>
+        <div class="stat">
+          <span>Weapon</span>
+          <span>
+            <% if equipped_weapon %>
+              <% if weapon_icon != "" %><i class="<%= weapon_icon %>"></i><% end %>
+              <%= equipped_weapon.name %> (ATK +<%= equipped_weapon.attack.to_f %>)
+            <% else %>
+              none
+            <% end %>
+          </span>
+        </div>
+        <div class="stat">
+          <span>Armor</span>
+          <span>
+            <% if equipped_armor %>
+              <% if armor_icon != "" %><i class="<%= armor_icon %>"></i><% end %>
+              <%= equipped_armor.name %> (DEF +<%= equipped_armor.defence.to_f %>)
+            <% else %>
+              none
+            <% end %>
+          </span>
+        </div>
+        <% hp_now = @player.current_hp(at: @now).round(1) %>
+        <% hp_max = @player.max_hp %>
+        <% hp_rate = hp_max.to_f.zero? ? 0 : ((hp_now / hp_max.to_f) * 100).round %>
+        <div class="stat"><span>HP</span><span><%= hp_now %> / <%= hp_max %></span></div>
+        <div class="bar"><span style="width: <%= hp_rate %>%"></span></div>
+        <% st_now = @player.current_stamina(at: @now) %>
+        <% st_max = @player.max_stamina %>
+        <% st_rate = st_max.to_i.zero? ? 0 : ((st_now.to_f / st_max.to_f) * 100).round %>
+        <div class="stat"><span>Stamina</span><span><%= st_now %> / <%= st_max %></span></div>
+        <div class="bar"><span style="width: <%= st_rate %>%"></span></div>
+        <div class="muted">Items:</div>
+        <% if @player.player_items.any? %>
+          <% equipment_items = @player.player_items.select { |pi| pi.item.is_a?(Weapon) || pi.item.is_a?(Armor) } %>
+          <% potion_items = @player.player_items.select { |pi| pi.item.is_a?(Potion) } %>
+          <% other_items = @player.player_items.reject { |pi| pi.item.is_a?(Weapon) || pi.item.is_a?(Armor) || pi.item.is_a?(Potion) } %>
+
+          <div class="list" style="margin-top: 6px;">
+            <% if equipment_items.any? %>
+              <div class="muted">Equipment</div>
+              <% equipment_items.each do |player_item| %>
+                <% item = player_item.item %>
+                <% next unless item %>
+                <% icon_label = item.respond_to?(:icon) ? item.icon.to_s.strip : "" %>
+                <div class="item-row">
+                  <% if icon_label != "" %>
+                    <span class="icon"><i class="<%= icon_label %>"></i></span>
+                  <% end %>
+                  <strong><%= item.name %></strong>
+                  <span class="muted">x<%= player_item.quantity %></span>
+                  <% if item.is_a?(Weapon) %>
+                    <span class="pill">ATK +<%= item.attack.to_f %></span>
+                    <% if @player.weapon_id == item.id %>
+                      <span class="pill">Equipped</span>
+                    <% else %>
+                      <form class="inline" action="/play" method="post">
+                        <input type="hidden" name="op" value="equip_weapon">
+                        <input type="hidden" name="weapon_id" value="<%= item.id %>">
+                        <button type="submit">Equip</button>
+                      </form>
+                    <% end %>
+                  <% elsif item.is_a?(Armor) %>
+                    <span class="pill">DEF +<%= item.defence.to_f %></span>
+                    <% if @player.armor_id == item.id %>
+                      <span class="pill">Equipped</span>
+                    <% else %>
+                      <form class="inline" action="/play" method="post">
+                        <input type="hidden" name="op" value="equip_armor">
+                        <input type="hidden" name="armor_id" value="<%= item.id %>">
+                        <button type="submit">Equip</button>
+                      </form>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+
+            <% if potion_items.any? %>
+              <div class="muted">Potions</div>
+              <% potion_items.each do |player_item| %>
+                <% item = player_item.item %>
+                <% next unless item %>
+                <div class="item-row">
+                  <strong><%= item.name %></strong>
+                  <span class="muted">x<%= player_item.quantity %></span>
+                  <span class="pill">Potion +<%= item.hp %> HP</span>
+                  <form class="inline" action="/play" method="post">
+                    <input type="hidden" name="op" value="potion">
+                    <input type="hidden" name="potion_id" value="<%= item.id %>">
+                    <button type="submit">Use</button>
+                  </form>
+                </div>
+              <% end %>
+            <% end %>
+
+            <% if other_items.any? %>
+              <div class="muted">Other</div>
+              <% other_items.each do |player_item| %>
+                <% item = player_item.item %>
+                <% next unless item %>
+                <% icon_label = item.respond_to?(:icon) ? item.icon.to_s.strip : "" %>
+                <div class="item-row">
+                  <% if icon_label != "" %>
+                    <span class="icon"><i class="<%= icon_label %>"></i></span>
+                  <% end %>
+                  <strong><%= item.name %></strong>
+                  <span class="muted">x<%= player_item.quantity %></span>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="muted">none</div>
+        <% end %>
+      <% else %>
+        <div class="muted">No player yet.</div>
+      <% end %>
+    </div>
+
+    <div class="card enemy-card">
+      <h2>Enemies</h2>
+      <div class="list">
+        <% @enemies.each do |enemy| %>
+          <div>
+            <strong><%= enemy.name %></strong>
+            <% if enemy.is_boss? %>
+              <span class="pill">BOSS</span>
+            <% end %>
+            <span class="pill">EXP <%= enemy.exp.to_i %></span>
+            <div class="muted">ATK <%= enemy.attack %> / DEF <%= enemy.defence %> / HP <%= enemy.hp %> / Stamina <%= enemy.stamina_cost.to_i %></div>
+            <% if enemy.rewards.any? %>
+              <div class="muted">Rewards: <%= enemy.rewards.map { |reward| reward.reward&.name }.compact.join(", ") %></div>
+            <% end %>
+            <% if @player %>
+              <form class="inline" action="/play" method="post">
+                <input type="hidden" name="op" value="challenge">
+                <input type="hidden" name="enemy_id" value="<%= enemy.id %>">
+                <button type="submit">Challenge</button>
+              </form>
+            <% else %>
+              <div class="muted">Create a player to fight.</div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+</main>

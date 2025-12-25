@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "type": "Gun",
+    "icon": "fa-solid fa-gun",
+    "name": "Bronze Pistol",
+    "attack": 12.5,
+    "info": "{\"slots\":1,\"origin\":\"forge\"}",
+    "metadata": "{\"source\":\"archive\",\"tags\":[\"starter\",\"event\"],\"stats\":{\"calibration\":0.92,\"batch\":\"A1\"},\"notes\":\"legacy\"}",
+    "rarity": "common",
+    "flags": 1
+  },
+  {
+    "id": 2,
+    "type": "Blade",
+    "icon": "fa-solid fa-sword",
+    "name": "Silver Saber",
+    "attack": 20.0,
+    "info": "{\"slots\":2,\"element\":\"wind\"}",
+    "metadata": "{\"source\":\"drop\",\"tags\":[\"mid\",\"wind\"],\"tuning\":{\"sharpness\":7,\"balance\":0.4},\"deprecated\":false}",
+    "rarity": "rare",
+    "flags": 3
+  },
+  {
+    "id": 3,
+    "type": "Gun",
+    "icon": "fa-solid fa-crosshairs",
+    "name": "Crimson Rifle",
+    "attack": 35.75,
+    "info": "{\"slots\":3,\"element\":\"fire\"}",
+    "metadata": "{\"source\":\"boss\",\"tags\":[\"rare\",\"fire\"],\"mods\":[{\"name\":\"burst\",\"level\":2},{\"name\":\"overheat\",\"level\":1}],\"extra\":null}",
+    "rarity": "epic",
+    "flags": 6
+  },
+  {
+    "id": 4,
+    "type": "Blade",
+    "icon": "fa-solid fa-bolt",
+    "name": "Storm Edge",
+    "attack": 28.0,
+    "info": "{\"slots\":2,\"element\":\"lightning\"}",
+    "metadata": "{\"source\":\"event\",\"tags\":[\"storm\",\"limited\"],\"tuning\":{\"sharpness\":8,\"balance\":0.6},\"deprecated\":false}",
+    "rarity": "rare",
+    "flags": 5
+  }
+]

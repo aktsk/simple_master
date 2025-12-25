@@ -13,8 +13,8 @@ module SimpleMaster
         def initialize(name, options)
           @enum = options[:enum]
           @const_name = "ENUM_FOR_#{name.upcase}"
-          @prefix = "#{name}_" if options[:prefix]
-          @suffix = "_#{options[:suffix]}" if options[:suffix]
+          @prefix = "#{options[:prefix] == true ? name : options[:prefix]}_" if options[:prefix]
+          @suffix = "_#{options[:suffix] == true ? name : options[:suffix]}" if options[:suffix]
 
           super
         end
@@ -64,7 +64,7 @@ module SimpleMaster
 
           enum.each_key do |enum_name|
             # Skip generating helpers for names that start with a digit
-            next if enum_name.match?(/\A\d/)
+            next if enum_name.match?(/\A\d/) && prefix.nil?
             master_class.simple_master_module.class_eval <<-RUBY, __FILE__, __LINE__ + 1
                 def #{prefix}#{enum_name}#{suffix}?
                   #{name} == :#{enum_name}

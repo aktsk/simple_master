@@ -23,4 +23,19 @@ RSpec.describe SimpleMaster::Loader::MarshalLoader do
       end
     end
   end
+
+  it "treats missing marshal files as empty record sets instead of raising" do
+    Dir.mktmpdir do |dir|
+      loader = described_class.new(path: dir)
+      dataset = SimpleMaster::Storage::Dataset.new(loader: loader)
+
+      expect { dataset.load }.not_to raise_error
+
+      SimpleMaster.use_dataset(dataset) do
+        expect(Weapon.all).to eq([])
+        expect(Level.all).to eq([])
+        expect(Enemy.all).to eq([])
+      end
+    end
+  end
 end

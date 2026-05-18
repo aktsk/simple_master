@@ -42,7 +42,7 @@ module SimpleMaster
                   else
                     record.send(method_name)
                   end
-              }.join(", ").then { "(#{_1})" }
+                }.join(", ").then { "(#{_1})" }
             }.join(", \n")
 
           "INSERT INTO `#{table_name}` \n#{sql_columns} VALUES \n#{values_sql}#{on_duplicate_key_update_sql};\n"
